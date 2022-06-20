@@ -29,7 +29,7 @@ public class EducacionController {
     @PostMapping("/educacion/crear")
     public String createEducacion(@RequestBody Educacion educacion){        
         iEducacionService.saveEducacion(educacion);
-        return "La persona fue creada correctamente";
+        return "La educacion fue creada correctamente";
     }
 
     @DeleteMapping("/educacion/borrar/{id}")
@@ -38,7 +38,7 @@ public class EducacionController {
         return "La educacion fue eliminada correctamente";
     }
 
-    @GetMapping("educacion/traer/perfil/{id}")
+    @GetMapping("educacion/traer/estudio/{id}")
     public Educacion findEducacion(@PathVariable Long id) {
         return iEducacionService.findEducacion(id);
     }
