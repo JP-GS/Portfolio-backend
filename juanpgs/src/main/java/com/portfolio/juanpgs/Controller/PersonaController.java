@@ -38,7 +38,7 @@ public class PersonaController {
         return "La persona fue eliminada correctamente";
     }
 
-    @GetMapping("personas/traer/perfil/{id}")
+    @GetMapping("personas/traer/{id}")
     public Persona findPersona(@PathVariable Long id) {
         return iPersonaService.findPersona(id);
     }

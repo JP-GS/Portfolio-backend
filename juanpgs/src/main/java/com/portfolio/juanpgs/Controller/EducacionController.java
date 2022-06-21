@@ -38,7 +38,7 @@ public class EducacionController {
         return "La educacion fue eliminada correctamente";
     }
 
-    @GetMapping("educacion/traer/estudio/{id}")
+    @GetMapping("educacion/traer/{id}")
     public Educacion findEducacion(@PathVariable Long id) {
         return iEducacionService.findEducacion(id);
     }
