@@ -24,10 +24,10 @@ public class Educacion {
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
     private String titulo;
 
-    @Size(min = 1, max = 50, message = "No cumple con la longitud")
+    @Size(min = 1, max = 255, message = "No cumple con la longitud")
     private String img;
 
-    @Size(min = 1, max = 50, message = "No cumple con la longitud")
+    @Size(min = 1, max = 30, message = "No cumple con la longitud")
     private String carrera;
 
     //@NotNull

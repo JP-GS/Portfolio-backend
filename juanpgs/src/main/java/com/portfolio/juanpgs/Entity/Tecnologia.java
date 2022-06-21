@@ -20,12 +20,12 @@ public class Tecnologia {
     private Long id;
 
     @NotNull
-    @Size(min = 1, max = 50, message = "No cumple con la longitud")
+    @Size(min = 1, max = 30, message = "No cumple con la longitud")
     private String nombre;
 
     @Size(min = 1, max = 4, message = "No cumple con la longitud")
     private String porcentaje; 
 
-    @Size(min = 1, max = 50, message = "No cumple con la longitud")
+    @Size(min = 1, max = 255, message = "No cumple con la longitud")
     private String img;
 }

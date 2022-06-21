@@ -25,10 +25,10 @@ public class Experiencia {
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
     private String puesto;
 
-    @Size(min = 1, max = 50, message = "No cumple con la longitud")
+    @Size(min = 1, max = 255, message = "No cumple con la longitud")
     private String img;
 
-    @Size(min = 1, max = 255, message = "No cumple con la longitud")
+    @Size(min = 1, max = 700, message = "No cumple con la longitud")
     private String descripcion;
 
     @Size(min = 1, max = 4, message = "No cumple con la longitud")

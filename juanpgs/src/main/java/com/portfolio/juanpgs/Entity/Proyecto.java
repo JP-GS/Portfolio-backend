@@ -26,9 +26,9 @@ public class Proyecto {
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
     private String fecha;   
 
-    @Size(min = 1, max = 50, message = "No cumple con la longitud")
+    @Size(min = 1, max = 700, message = "No cumple con la longitud")
     private String descripcion; 
 
-    @Size(min = 1, max = 50, message = "No cumple con la longitud")
+    @Size(min = 1, max = 255, message = "No cumple con la longitud")
     private String img;
 }

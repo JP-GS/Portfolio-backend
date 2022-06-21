@@ -17,11 +17,11 @@ public class Usuario {
     private Long id;
 
     @NotNull
-    @Size(min = 1, max = 30, message = "No cumple con la longitud")
+    @Size(min = 1, max = 20, message = "No cumple con la longitud")
     private String email;
 
     @NotNull
-    @Size(min = 1, max = 30, message = "No cumple con la longitud")
+    @Size(min = 1, max = 20, message = "No cumple con la longitud")
     private String password;
 
 }

@@ -29,7 +29,7 @@ public class UsuarioController {
     @PostMapping("/usuario/crear")
     public String createUsuario(@RequestBody Usuario usuario){        
         iUsuarioService.saveUsuario(usuario);
-        return "La persona fue creada correctamente";
+        return "El usuario fue creado correctamente";
     }
 
     @DeleteMapping("/usuario/borrar/{id}")
