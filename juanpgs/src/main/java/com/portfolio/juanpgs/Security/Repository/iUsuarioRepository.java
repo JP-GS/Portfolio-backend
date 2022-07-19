@@ -1,6 +1,6 @@
 package com.portfolio.juanpgs.Security.Repository;
 
-import com.portfolio.juanpgs.Entity.Usuario;
+import com.portfolio.juanpgs.Security.Entity.Usuario;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
