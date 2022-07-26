@@ -1,28 +1,27 @@
-package com.portfolio.juanpgs.Entity;
+package com.portfolio.juanpgs.Dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
-@Entity
-public class Experiencia {
+public class DtoExperiencia {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @NotBlank
     private String nombreExp;
+    @NotBlank
     private String puesto;
+    @NotBlank
     private String descripcion;
+    @NotBlank
     private String imgExp;
+    @NotBlank
     private String inicio;
+    @NotBlank
     private String fin;
 
-//Constructores
-    public Experiencia() {
+//Constructor
+    public DtoExperiencia() {
     }
 
-    public Experiencia(String nombreExp, String puesto, String descripcion, String imgExp, String inicio, String fin) {
+    public DtoExperiencia(String nombreExp, String puesto, String descripcion, String imgExp, String inicio, String fin) {
         this.nombreExp = nombreExp;
         this.puesto = puesto;
         this.descripcion = descripcion;
@@ -31,15 +30,9 @@ public class Experiencia {
         this.fin = fin;
     }
 
+   
+
 //Getters & Setters
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNombreExp() {
         return nombreExp;
@@ -88,6 +81,6 @@ public class Experiencia {
     public void setFin(String fin) {
         this.fin = fin;
     }
-    
+
 
 }
