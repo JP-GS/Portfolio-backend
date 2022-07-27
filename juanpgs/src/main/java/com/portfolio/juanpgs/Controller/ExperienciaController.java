@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/experiencia")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class ExperienciaController {
 
     @Autowired
@@ -31,6 +31,13 @@ public class ExperienciaController {
     public ResponseEntity<List<Experiencia>> list() {
         List<Experiencia> list = experienciaService.list();
         return new ResponseEntity(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/traer/{id}")
+    public ResponseEntity<Experiencia> detail(@PathVariable("id") int id) {
+        Experiencia experiencia = experienciaService.getOne(id).get();
+
+        return new ResponseEntity(experiencia, HttpStatus.OK);
     }
 
     @PostMapping("/crear")
