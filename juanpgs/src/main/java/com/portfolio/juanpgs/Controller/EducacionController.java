@@ -34,7 +34,10 @@ public class EducacionController {
     }
 
     @GetMapping("/traer/{id}")
-    public ResponseEntity<Educacion> detail(@PathVariable("id") int id) {
+    public ResponseEntity<Educacion> getById(@PathVariable("id") int id) {
+        if (!educacionService.existsById(id)) {
+            return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.NOT_FOUND);
+        }
         Educacion educacion = educacionService.getOne(id).get();
         return new ResponseEntity(educacion, HttpStatus.OK);
     }
@@ -63,7 +66,7 @@ public class EducacionController {
     @PutMapping("/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoEducacion dtoEducacion) {
         if (!educacionService.existsById(id)) {
-            return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.NOT_FOUND);
         }
         if (educacionService.existsByNombreEdu(dtoEducacion.getNombreEdu()) && educacionService.getOneByNombreEdu(dtoEducacion.getNombreEdu()).get().getId() != id) {
             return new ResponseEntity(new Mensaje("El registro ya existe"), HttpStatus.BAD_REQUEST);
@@ -73,12 +76,12 @@ public class EducacionController {
         }
 
         Educacion educacion = educacionService.getOne(id).get();
-        educacion.setNombreEdu(dtoEducacion.getNombreEdu());
-        educacion.setTitulo(dtoEducacion.getTitulo());
-        educacion.setCarrera(dtoEducacion.getCarrera());
-        educacion.setImgEdu(dtoEducacion.getImgEdu());
-        educacion.setInicio(dtoEducacion.getInicio());
-        educacion.setFin(dtoEducacion.getFin());
+                educacion.setNombreEdu(dtoEducacion.getNombreEdu());
+                educacion.setTitulo(dtoEducacion.getTitulo());
+                educacion.setCarrera(dtoEducacion.getCarrera());
+                educacion.setImgEdu(dtoEducacion.getImgEdu());
+                educacion.setInicio(dtoEducacion.getInicio());
+                educacion.setFin(dtoEducacion.getFin());
 
         educacionService.save(educacion);
         return new ResponseEntity(new Mensaje("Se guardaron los cambios"), HttpStatus.OK);
@@ -88,7 +91,7 @@ public class EducacionController {
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
 
         if (!educacionService.existsById(id)) {
-            return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.NOT_FOUND);
         }
 
         educacionService.delete(id);
