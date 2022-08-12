@@ -66,7 +66,7 @@ public class ExperienciaController {
     @PutMapping("/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoExperiencia dtoExp) {
         if (!experienciaService.existsById(id)) {
-            return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.NOT_FOUND);
         }
         if (experienciaService.existsByNombreExp(dtoExp.getNombreExp()) && experienciaService.getByNombreExp(dtoExp.getNombreExp()).get().getId() != id) {
             return new ResponseEntity(new Mensaje("Esa experiencia ya existe"), HttpStatus.BAD_REQUEST);

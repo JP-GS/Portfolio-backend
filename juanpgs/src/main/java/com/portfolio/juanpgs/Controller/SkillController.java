@@ -75,6 +75,8 @@ public class SkillController {
         skill.setNombreSkill(dtoSkill.getNombreSkill());
         skill.setImgSkill(dtoSkill.getImgSkill());
         skill.setPorcentaje(dtoSkill.getPorcentaje());
+
+        skillService.save(skill);
         return new ResponseEntity(new Mensaje("Cambios guardados correctamente"), HttpStatus.OK);
     }
 
