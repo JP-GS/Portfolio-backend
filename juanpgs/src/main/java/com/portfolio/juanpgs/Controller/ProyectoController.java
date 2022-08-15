@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/proyecto/")
-@CrossOrigin(origins = "http://localhost:4200/")
+@RequestMapping("/proyecto")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProyectoController {
 
     @Autowired
@@ -44,7 +44,7 @@ public class ProyectoController {
     }
 
     @PostMapping("/crear")
-    public ResponseEntity<?> create(@RequestBody DtoProyecto dtoProyecto) {
+    public ResponseEntity<Proyecto> create(@RequestBody DtoProyecto dtoProyecto) {
         if (StringUtils.isBlank(dtoProyecto.getNombreP())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
@@ -54,7 +54,8 @@ public class ProyectoController {
         Proyecto proyecto = new Proyecto(
                 dtoProyecto.getNombreP(),
                 dtoProyecto.getImgP(),
-                dtoProyecto.getDescripcionP());
+                dtoProyecto.getDescripcionP(),
+                dtoProyecto.getUrlP());
         proyectoService.save(proyecto);
 
         return new ResponseEntity(new Mensaje("Proyecto agregado"), HttpStatus.OK);
@@ -76,6 +77,7 @@ public class ProyectoController {
         proyecto.setNombreP(dtoProyecto.getNombreP());
         proyecto.setImgP(dtoProyecto.getImgP());
         proyecto.setDescripcionP(dtoProyecto.getDescripcionP());
+        proyecto.setUrlP(dtoProyecto.getUrlP());
 
         proyectoService.save(proyecto);
         return new ResponseEntity(new Mensaje("Proyecto Actualizado"), HttpStatus.OK);
