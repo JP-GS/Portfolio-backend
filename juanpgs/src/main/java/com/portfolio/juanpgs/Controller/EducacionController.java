@@ -47,10 +47,6 @@ public class EducacionController {
         if (StringUtils.isBlank(dtoEducacion.getNombreEdu())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        if (educacionService.existsByNombreEdu(dtoEducacion.getNombreEdu())) {
-            return new ResponseEntity(new Mensaje("Ya existe ese registro"), HttpStatus.BAD_REQUEST);
-        }
-
         Educacion educacion = new Educacion(
                 dtoEducacion.getNombreEdu(),
                 dtoEducacion.getTitulo(),
@@ -68,9 +64,7 @@ public class EducacionController {
         if (!educacionService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.NOT_FOUND);
         }
-        if (educacionService.existsByNombreEdu(dtoEducacion.getNombreEdu()) && educacionService.getOneByNombreEdu(dtoEducacion.getNombreEdu()).get().getId() != id) {
-            return new ResponseEntity(new Mensaje("El registro ya existe"), HttpStatus.BAD_REQUEST);
-        }
+
         if (StringUtils.isBlank(dtoEducacion.getNombreEdu())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
