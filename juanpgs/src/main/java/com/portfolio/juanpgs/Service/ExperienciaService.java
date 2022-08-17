@@ -13,33 +13,33 @@ import com.portfolio.juanpgs.Repository.ExperienciaRepo;
 public class ExperienciaService {
 
     @Autowired
-    ExperienciaRepo rExperiencia;
+    ExperienciaRepo experienciaRepo;
 
     public List<Experiencia> list() {
-        return rExperiencia.findAll();
+        return experienciaRepo.findAll();
     }
 
     public Optional<Experiencia> getOne(int id) {
-        return rExperiencia.findById(id);
+        return experienciaRepo.findById(id);
     }
 
     public Optional<Experiencia> getByNombreExp(String nombreExp) {
-        return rExperiencia.findByNombreExp(nombreExp);
+        return experienciaRepo.findByNombreExp(nombreExp);
     }
 
     public void save(Experiencia experiencia) {
-        rExperiencia.save(experiencia);
+        experienciaRepo.save(experiencia);
     }
 
     public void delete(int id) {
-        rExperiencia.deleteById(id);
+        experienciaRepo.deleteById(id);
     }
 
     public boolean existsById(int id) {
-        return rExperiencia.existsById(id);
+        return experienciaRepo.existsById(id);
     }
 
     public boolean existsByNombreExp(String nombreExp) {
-        return rExperiencia.existsByNombreExp(nombreExp);
+        return experienciaRepo.existsByNombreExp(nombreExp);
     }
 }
