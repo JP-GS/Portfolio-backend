@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("proyecto")
-@CrossOrigin(origins = "https://portfoliojpgs-bbb19.web.app/")
+@RequestMapping("/proyecto")
+@CrossOrigin(origins = "https://portfoliojpgs-bbb19.web.app")
 public class ProyectoController {
 
     @Autowired
