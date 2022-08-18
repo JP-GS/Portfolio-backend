@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("auth")
-@CrossOrigin(origins = "https://portfoliojuan-bd1bb.web.app/")
+@CrossOrigin(origins = "https://portfoliojpgs-bbb19.web.app/")
 public class AuthController {
 
     @Autowired
