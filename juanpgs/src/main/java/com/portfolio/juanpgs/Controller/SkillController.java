@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/tecnologia")
-@CrossOrigin(origins = "https://frontendportfolio-e110f.web.app")
+@CrossOrigin(origins = "https://portfoliojuan-bd1bb.web.app")
 public class SkillController {
 
     @Autowired
@@ -33,7 +33,7 @@ public class SkillController {
         return new ResponseEntity(list, HttpStatus.OK);
     }
 
-    @GetMapping("traer/{id}")
+    @GetMapping("/traer/{id}")
     public ResponseEntity<Skill> getById(@PathVariable("id") int id) {
         if (!skillService.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe el id"), HttpStatus.NOT_FOUND);
