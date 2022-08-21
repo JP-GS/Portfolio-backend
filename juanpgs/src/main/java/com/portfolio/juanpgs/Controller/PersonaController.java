@@ -64,7 +64,6 @@ public class PersonaController {
         return new ResponseEntity(new Mensaje("Persona agregada"), HttpStatus.OK);
     }
 
-    
     @PutMapping("/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoPersona dtoPers) {
         if (!personaService.existsById(id)) {

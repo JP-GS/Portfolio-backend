@@ -70,12 +70,12 @@ public class EducacionController {
         }
 
         Educacion educacion = educacionService.getOne(id).get();
-                educacion.setNombreEdu(dtoEducacion.getNombreEdu());
-                educacion.setTitulo(dtoEducacion.getTitulo());
-                educacion.setCarrera(dtoEducacion.getCarrera());
-                educacion.setImgEdu(dtoEducacion.getImgEdu());
-                educacion.setInicio(dtoEducacion.getInicio());
-                educacion.setFin(dtoEducacion.getFin());
+        educacion.setNombreEdu(dtoEducacion.getNombreEdu());
+        educacion.setTitulo(dtoEducacion.getTitulo());
+        educacion.setCarrera(dtoEducacion.getCarrera());
+        educacion.setImgEdu(dtoEducacion.getImgEdu());
+        educacion.setInicio(dtoEducacion.getInicio());
+        educacion.setFin(dtoEducacion.getFin());
 
         educacionService.save(educacion);
         return new ResponseEntity(new Mensaje("Se guardaron los cambios"), HttpStatus.OK);
