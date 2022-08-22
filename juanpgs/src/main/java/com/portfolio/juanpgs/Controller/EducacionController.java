@@ -16,24 +16,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/educacion")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://portfoliojpgs-10307.web.app")
 public class EducacionController {
 
     @Autowired
     EducacionService educacionService;
 
-    @GetMapping("/traer")
+    @GetMapping("/educacion/traer")
     public ResponseEntity<List<Educacion>> educationlist() {
         List<Educacion> list = educacionService.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
 
-    @GetMapping("/traer/{id}")
+    @GetMapping("/educacion/traer/{id}")
     public ResponseEntity<Educacion> getById(@PathVariable("id") int id) {
         if (!educacionService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.NOT_FOUND);
@@ -42,7 +40,7 @@ public class EducacionController {
         return new ResponseEntity(educacion, HttpStatus.OK);
     }
 
-    @PostMapping("/crear")
+    @PostMapping("/educacion/crear")
     public ResponseEntity<Educacion> create(@RequestBody DtoEducacion dtoEducacion) {
         if (StringUtils.isBlank(dtoEducacion.getNombreEdu())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -59,7 +57,7 @@ public class EducacionController {
         return new ResponseEntity(new Mensaje("Educacion agregada"), HttpStatus.OK);
     }
 
-    @PutMapping("/editar/{id}")
+    @PutMapping("/educacion/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoEducacion dtoEducacion) {
         if (!educacionService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.NOT_FOUND);
@@ -81,7 +79,7 @@ public class EducacionController {
         return new ResponseEntity(new Mensaje("Se guardaron los cambios"), HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("/educacion/eliminar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
 
         if (!educacionService.existsById(id)) {

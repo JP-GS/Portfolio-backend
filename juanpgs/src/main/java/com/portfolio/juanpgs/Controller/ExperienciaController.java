@@ -16,24 +16,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/experiencia")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://portfoliojpgs-10307.web.app")
 public class ExperienciaController {
 
     @Autowired
     ExperienciaService experienciaService;
 
-    @GetMapping("/traer")
+    @GetMapping("/experiencia/traer")
     public ResponseEntity<List<Experiencia>> list() {
         List<Experiencia> list = experienciaService.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
 
-    @GetMapping("/traer/{id}")
+    @GetMapping("/experiencia/traer/{id}")
     public ResponseEntity<Experiencia> getById(@PathVariable("id") int id) {
         if (!experienciaService.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe el id"), HttpStatus.NOT_FOUND);
@@ -43,7 +41,7 @@ public class ExperienciaController {
         return new ResponseEntity(experiencia, HttpStatus.OK);
     }
 
-    @PostMapping("/crear")
+    @PostMapping("/experiencia/crear")
     public ResponseEntity<?> create(@RequestBody DtoExperiencia dtoExp) {
         if (StringUtils.isBlank(dtoExp.getNombreExp())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -63,7 +61,7 @@ public class ExperienciaController {
         return new ResponseEntity(new Mensaje("Experiencia agregada"), HttpStatus.OK);
     }
 
-    @PutMapping("/editar/{id}")
+    @PutMapping("/experiencia/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoExperiencia dtoExp) {
         if (!experienciaService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.NOT_FOUND);
@@ -86,7 +84,7 @@ public class ExperienciaController {
         return new ResponseEntity(new Mensaje("Experiencia Actualizada"), HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("/experiencia/eliminar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!experienciaService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.BAD_REQUEST);

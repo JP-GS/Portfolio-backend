@@ -16,24 +16,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/tecnologia")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://portfoliojpgs-10307.web.app")
 public class SkillController {
 
     @Autowired
     SkillService skillService;
 
-    @GetMapping("/traer")
+    @GetMapping("/tecnologia/traer")
     public ResponseEntity<List<Skill>> list() {
         List<Skill> list = skillService.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
 
-    @GetMapping("/traer/{id}")
+    @GetMapping("/tecnologia/traer/{id}")
     public ResponseEntity<Skill> getById(@PathVariable("id") int id) {
         if (!skillService.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe el id"), HttpStatus.NOT_FOUND);
@@ -42,7 +40,7 @@ public class SkillController {
         return new ResponseEntity(skill, HttpStatus.OK);
     }
 
-    @PostMapping("/crear")
+    @PostMapping("/tecnologia/crear")
     public ResponseEntity<Skill> create(@RequestBody DtoSkill dtoSkill) {
         if (StringUtils.isBlank(dtoSkill.getNombreSkill())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -59,7 +57,7 @@ public class SkillController {
         return new ResponseEntity(new Mensaje("Skill creada correctamente"), HttpStatus.OK);
     }
 
-    @PutMapping("/editar/{id}")
+    @PutMapping("/tecnologia/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoSkill dtoSkill) {
         if (!skillService.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe el id"), HttpStatus.NOT_FOUND);
@@ -80,7 +78,7 @@ public class SkillController {
         return new ResponseEntity(new Mensaje("Cambios guardados correctamente"), HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("/tecnologia/eliminar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!skillService.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe el id"), HttpStatus.NOT_FOUND);
