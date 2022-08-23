@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,22 +17,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/educacion")
 @CrossOrigin(origins = "https://portfoliojpgs-71a02.web.app")
 public class EducacionController {
 
     @Autowired
     EducacionService educacionService;
 
-    @GetMapping("/educacion/traer")
+    @GetMapping("/traer")
     public ResponseEntity<List<Educacion>> educationlist() {
         List<Educacion> list = educacionService.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
 
-    @GetMapping("/educacion/traer/{id}")
+    @GetMapping("/traer/{id}")
     public ResponseEntity<Educacion> getById(@PathVariable("id") int id) {
         if (!educacionService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.NOT_FOUND);
@@ -40,7 +43,8 @@ public class EducacionController {
         return new ResponseEntity(educacion, HttpStatus.OK);
     }
 
-    @PostMapping("/educacion/crear")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/crear")
     public ResponseEntity<Educacion> create(@RequestBody DtoEducacion dtoEducacion) {
         if (StringUtils.isBlank(dtoEducacion.getNombreEdu())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -57,7 +61,8 @@ public class EducacionController {
         return new ResponseEntity(new Mensaje("Educacion agregada"), HttpStatus.OK);
     }
 
-    @PutMapping("/educacion/editar/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoEducacion dtoEducacion) {
         if (!educacionService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.NOT_FOUND);
@@ -79,7 +84,8 @@ public class EducacionController {
         return new ResponseEntity(new Mensaje("Se guardaron los cambios"), HttpStatus.OK);
     }
 
-    @DeleteMapping("/educacion/eliminar/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
 
         if (!educacionService.existsById(id)) {

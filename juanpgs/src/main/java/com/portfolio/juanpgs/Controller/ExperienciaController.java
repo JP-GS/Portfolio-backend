@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,22 +17,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/experiencia")
 @CrossOrigin(origins = "https://portfoliojpgs-71a02.web.app")
 public class ExperienciaController {
 
     @Autowired
     ExperienciaService experienciaService;
 
-    @GetMapping("/experiencia/traer")
+    @GetMapping("/traer")
     public ResponseEntity<List<Experiencia>> list() {
         List<Experiencia> list = experienciaService.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
 
-    @GetMapping("/experiencia/traer/{id}")
+    @GetMapping("/traer/{id}")
     public ResponseEntity<Experiencia> getById(@PathVariable("id") int id) {
         if (!experienciaService.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe el id"), HttpStatus.NOT_FOUND);
@@ -41,7 +44,8 @@ public class ExperienciaController {
         return new ResponseEntity(experiencia, HttpStatus.OK);
     }
 
-    @PostMapping("/experiencia/crear")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/crear")
     public ResponseEntity<?> create(@RequestBody DtoExperiencia dtoExp) {
         if (StringUtils.isBlank(dtoExp.getNombreExp())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -61,7 +65,8 @@ public class ExperienciaController {
         return new ResponseEntity(new Mensaje("Experiencia agregada"), HttpStatus.OK);
     }
 
-    @PutMapping("/experiencia/editar/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoExperiencia dtoExp) {
         if (!experienciaService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.NOT_FOUND);
@@ -84,7 +89,8 @@ public class ExperienciaController {
         return new ResponseEntity(new Mensaje("Experiencia Actualizada"), HttpStatus.OK);
     }
 
-    @DeleteMapping("/experiencia/eliminar/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!experienciaService.existsById(id)) {
             return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.BAD_REQUEST);
