@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "https://portfoliojpgs-10307.web.app")
+@CrossOrigin(origins = "https://portfoliojpgs-71a02.web.app")
 public class AuthController {
 
     @Autowired
